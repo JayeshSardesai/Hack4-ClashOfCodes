@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Take a Photo and Get Description</title>
+  <style>
+    #video {
+      border: 1px solid black;
+      margin-bottom: 10px;
+    }
+    #captureButton {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Capture a Photo of the Service (e.g., Painting)</h2>
+  
+  <!-- Camera view -->
+  <video id="video" width="320" height="240" autoplay></video>
+  
+  <!-- Capture button -->
+  <button id="captureButton">Capture Photo</button>
+  
+  <!-- Canvas for processing the image -->
+  <canvas id="canvas" style="display: none;"></canvas>
+
+  <!-- Display the result -->
+  <h3>Result</h3>
+  <p id="description"></p>
+  <p id="price"></p>
+
+  <script>
+    const video = document.getElementById('video');
+    const canvas = document.getElementById('canvas');
+    const captureButton = document.getElementById('captureButton');
+    const descriptionElement = document.getElementById('description');
+    const priceElement = document.getElementById('price');
+
+    // Access the camera
+    navigator.mediaDevices.getUserMedia({ video: true })
+      .then((stream) => {
+        video.srcObject = stream;
+      })
+      .catch((err) => {
+        console.error('Error accessing camera:', err);
+      });
+
+    // Capture image when button is clicked
+    captureButton.addEventListener('click', () => {
+      const context = canvas.getContext('2d');
+      context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+      // Convert the image to base64 format
+      const imageData = canvas.toDataURL('image/jpeg');
+
+      // Send the image data to the backend for processing
+      fetch('/process-image', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ image: imageData }),
+      })
+      .then(response => response.json())
+      .then(data => {
+        // Display the result from the backend
+        descriptionElement.textContent = 'Description: ' + data.description;
+        priceElement.textContent = 'Estimated Price: ₹' + data.estimatedPrice;
+      })
+      .catch((err) => {
+        console.error('Error sending image:', err);
+      });
+    });
+  </script>
+</body>
+</html>

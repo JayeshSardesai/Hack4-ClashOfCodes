@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Service Request Form</title>
+        <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 600px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="file"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        textarea:focus,
+        select:focus {
+            border-color: #4CAF50;
+            outline: none;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #777;
+        }
+    </style>
+        <script>
+        function redirectToPage(selectElement) {
+            const selectedValue = selectElement.value;
+            if (selectedValue === "immediate") {
+                window.open("https://rzp.io/rzp/mu676Fn") // Replace with your URL
+            } else if (selectedValue === "regular") {
+                window.open("https://rzp.io/rzp/mfy4HeS7") // Replace with your URL
+            }
+        }
+    </script>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Order Service</h1>
+            <form action="/submit" method="POST" enctype="multipart/form-data">
+                <label for="serviceType">Select Service:</label>
+                <select id="serviceType" name="serviceType" required>
+                    <option value disabled selected>Select Service</option>
+                    <option value="carpentry">Carpentry</option>
+                    <option value="plumbing">Plumbing</option>
+                    <option value="electrical">Electrical Services</option>
+                    <option value="houseCleaning">House Cleaning</option>
+                    <option value="laundry">Laundry</option>
+                </select>
+
+                <label for="serviceDescription">Service Description:</label>
+                <textarea id="serviceDescription" name="serviceDescription"
+                    rows="4" required></textarea>
+
+                <label for="customerName">Customer Name:</label>
+                <input type="text" id="customerName" name="customerName"
+                    required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="address">Address:</label>
+                <input type="text" id="address" name="address" required>
+
+                <label for="city">City:</label>
+                <input type="text" id="city" name="city" required>
+
+                <label for="photo">Upload Photo:</label>
+                <input type="file" id="photo" name="photo" accept="image/*"
+                    required>
+
+                <label for="serviceTypeDropdown">Select Type of Service:</label>
+                <select id="serviceTypeDropdown" name="serviceTypeDropdown"
+                    onchange="redirectToPage(this)" required>
+                    <option value disabled selected>Select Type of
+                        Service</option>
+                    <option value="immediate">Immediate Service</option>
+                    <option value="regular">Regular Service</option>
+                </select>
+
+                <input type="submit" value="Order">
+                <button><a href="">send the email to user</a></button>
+            </form>
+        </div>
+    </body>
+</html>

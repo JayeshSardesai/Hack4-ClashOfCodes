@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verified Providers</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+        }
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+        td img {
+            max-width: 100px;
+            max-height: 100px;
+            object-fit: cover;
+        }
+        .container {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Verified Providers</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>City</th>
+                <th>Services</th>
+                <th>Photo</th>
+                <th>Police clearance <br>Certificate</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% providers.forEach(function(provider) { %>
+                <tr>
+                    <td><%= provider.fname %></td>
+                    <td><%= provider.lname %></td>
+                    <td><%= provider.email %></td>
+                    <td><%= provider.phoneNumber %></td>
+                    <td><%= provider.city %></td>
+                    <td><%= provider.services %></td>
+                    <td><img src="/<%= provider.photo %>" alt="Provider Photo"></td>
+                    <td><img src="/<%= provider.labourCard %>" alt="Labour Card"></td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+</body>
+</html>
