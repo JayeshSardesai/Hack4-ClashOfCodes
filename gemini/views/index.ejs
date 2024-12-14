@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Service Description and Price Estimator</title>
+  <style>
+    .body{
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+    .con{
+        border:1px solid black;
+        border-radius: 10px;
+        width:50%;
+        padding:10px;
+        background-color: aqua;
+        position: relative;
+        left: 25%;
+        top: 25%;
+        overflow:auto;
+    }
+    button{
+        background-color: yellow;
+    }
+  
+  </style>
+</head>
+<body>
+  <div class="con">
+
+    <h1>Service Description and Price Estimator</h1>
+    <form id="service-form" enctype="multipart/form-data" method="POST" action="/generate">
+      <label for="service-image">Upload Image</label>
+      <input type="file" name="service-image" id="service-image" accept="image/*" required><br><br>
+  
+      <button type="submit">Submit</button>
+    </form>
+  
+    <% if (description) { %>
+      <h2>Description:</h2>
+      <pre><%= description %></pre>
+    <% } %>
+  </div>
+  
+</body>
+</html>
